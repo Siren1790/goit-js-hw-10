@@ -1,5 +1,6 @@
 import './css/styles.css';
 import debounce from "lodash.debounce";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -19,7 +20,7 @@ function searchCountries (e){
    API.searchCountries(searchValue)
       .then(data => {
          if (data.length > 10){
-            console.log("Потрібно більше букв")
+            Notify.info("Too many matches found. Please enter a more specific name.");
          } else {
          for(info of data){
             murkupCountries(info)            
@@ -27,7 +28,7 @@ function searchCountries (e){
       }
       })
       .catch(error => {
-      console.log(error);
+         Notify.failure("Oops, there is no country with that name");
       })
 }
 
