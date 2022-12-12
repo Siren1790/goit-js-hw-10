@@ -1,4 +1,5 @@
 import './css/styles.css';
+import debounce from "lodash.debounce";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -10,23 +11,24 @@ refs = {
    countryInfo: document.querySelector('.country-info'),
 }
 
-refs.searchBox.addEventListener("keyup", searchCountries);
+refs.searchBox.addEventListener("keyup", debounce(searchCountries, DEBOUNCE_DELAY));
 
 function searchCountries (e){
+   const searchValue = e.target.value.trim();
 
-   API.searchCountries(e.target.value)
+   API.searchCountries(searchValue)
       .then(data => {
-      if (data.length > 10){
-         console.log("Потрібно більше букв")
-      } else {
+         if (data.length > 10){
+            console.log("Потрібно більше букв")
+         } else {
          for(info of data){
             murkupCountries(info)            
          }
       }
-   })
-   .catch(error => {
+      })
+      .catch(error => {
       console.log(error);
-   })
+      })
 }
 
 function murkupCountries ({name: {official}, capital, population, flags: {svg}, languages}){
