@@ -47,8 +47,8 @@ function displayCountries(countries) {
 
    if (countries.length > 1 && countries.length <= 10) {
       const markup = countries.map(country =>  countryListTemplate(country));
-      refs.countryInfo.innerHTML = markup.join('');
-      refs.countryList.innerHTML = '';
+      refs.countryInfo.innerHTML = '';
+      refs.countryList.innerHTML = markup.join('');
    }   
 }
 
@@ -60,13 +60,7 @@ function countryListTemplate({ flags, name }) {
    </li>`;
 }
 
-export function countryСardTemplate({
-   flags,
-   name,
-   capital,
-   population,
-   languages,
-}) {
+export function countryСardTemplate({flags, name, capital, population, languages,}) {
    return `
    <div class="country-info__container">
       <div class="country-info__wrapper">
