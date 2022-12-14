@@ -25,10 +25,12 @@ function searchCountries(e) {
    const searchValue = e.target.value.trim(); 
 
 
-   API.xxx(searchValue)
+   API.requireCountry(searchValue)
       .then(displayCountries)
-      .catch(err => {
-         Notify.failure("Oops, there is no country with that name")
+      .catch(error => {
+         clearMarkup();
+         Notify.failure(error.message);
+         return;
       });
 }
 
@@ -75,4 +77,9 @@ export function countryСardTemplate({
       <p class="country-info__population"><span class="country-info__weight">Population:</span> ${population}</p>
       <p class="country-info__languages"><span class="country-info__weight">Languages:</span> ${Object.values(languages)}</p>
    </div>`;
+}
+
+function clearMarkup() {
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
 }
