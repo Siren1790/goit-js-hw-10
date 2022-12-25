@@ -7,7 +7,7 @@ const DEBOUNCE_DELAY = 300;
 
 import API from "./api-countries"
 
-refs = {
+const refs = {
    searchBox: document.querySelector("#search-box"),
    countryList: document.querySelector('.country-list'),
    countryInfo: document.querySelector('.country-info'),
