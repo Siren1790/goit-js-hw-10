@@ -36,6 +36,7 @@ function searchCountries(e) {
 
 function displayCountries(countries) {
    if (countries.length > 10) {
+      clearMarkup(); //на випадок очищення форми вручну.
       Notify.info("Too many matches found. Please enter a more specific name."); 
    }
             
